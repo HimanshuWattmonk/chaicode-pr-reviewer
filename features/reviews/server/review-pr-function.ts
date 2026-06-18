@@ -8,6 +8,7 @@ import { postPrComment } from "./post-pr-comment";
 export const reviewPullRequest = inngest.createFunction(
     { id: "review-pull-request", triggers: { event: "github/pr.received" } },
     async ({ event, step }) => {
+        debugger
         const pullRequestId = event.data.pullRequestId;
 
         const pullRequest = await step.run("mark-processing", async () => {
@@ -43,6 +44,8 @@ export const reviewPullRequest = inngest.createFunction(
         }
 
         const review = await step.run("generate-ai-review", async () => {
+            console.log('generateReview');
+
             return generateReview({
                 repoFullName: pullRequest.repoFullName,
                 title: pullRequest.title,

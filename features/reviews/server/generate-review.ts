@@ -50,17 +50,16 @@ type ReviewInput = {
 };
 
 function buildRepoContextSection(repoContextSnippets: string[]) {
+    debugger;
+    console.log('repoContextSnippets', repoContextSnippets);
+    
     if (repoContextSnippets.length === 0) {
         return "";
     }
 
     const repoContext = repoContextSnippets.join("\n\n---\n\n");
 
-    return `
-
-Related code from the repository (for context only, not part of the change):
-
-${repoContext}`;
+    return `Related code from the repository (for context only, not part of the change): ${repoContext}`;
 }
 
 export async function generateReview(input: ReviewInput) {
